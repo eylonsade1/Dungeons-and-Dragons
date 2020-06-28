@@ -2,9 +2,6 @@ package BusinessLayer.Tiles.Units.Enemies;
 
 import BusinessLayer.Resources.Health;
 import BusinessLayer.Tiles.Position;
-import BusinessLayer.Tiles.Unit;
-
-import java.util.List;
 //todo comment
 
 public class Trap extends Enemy {
@@ -16,8 +13,8 @@ public class Trap extends Enemy {
     private int ticksCount;
     private boolean visible;
 
-    public Trap (char tileType, Position position, String name, Health trapHealth, int attackPoints, int defensePoints, int experienceValue, List<Unit> allUnitsInRange, int visibilityTime, int invisibilityTime) {
-        super (tileType, position, name, trapHealth, attackPoints, defensePoints, experienceValue, allUnitsInRange);
+    public Trap(char tileType, Position position, String name, Health trapHealth, int attackPoints, int defensePoints, int experienceValue, int visibilityTime, int invisibilityTime) {
+        super (tileType, position, name, trapHealth, attackPoints, defensePoints, experienceValue);
 
         this.visibilityTime = visibilityTime;
         this.invisibilityTime = invisibilityTime;

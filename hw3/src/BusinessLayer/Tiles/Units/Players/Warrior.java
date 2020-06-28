@@ -2,9 +2,6 @@ package BusinessLayer.Tiles.Units.Players;
 
 import BusinessLayer.Resources.Health;
 import BusinessLayer.Tiles.Position;
-import BusinessLayer.Tiles.Unit;
-
-import java.util.List;
 
 //todo comment
 public class Warrior extends Player {
@@ -13,8 +10,8 @@ public class Warrior extends Player {
     private int remainingCoolDown;
     private int abilityHeal;
 
-    public Warrior (Position position, String name, Health warriorHealth, int attackPoints, int defensePoints, List<Unit> allUnitsInRange, int abilityCoolDown, int remainingCoolDown) {
-        super(position, name, warriorHealth, attackPoints, defensePoints, allUnitsInRange);
+    public Warrior(Position position, String name, Health warriorHealth, int attackPoints, int defensePoints, int abilityCoolDown) {
+        super(position, name, warriorHealth, attackPoints, defensePoints);
 
         this.abilityCoolDown = abilityCoolDown;
         this.remainingCoolDown = 0;

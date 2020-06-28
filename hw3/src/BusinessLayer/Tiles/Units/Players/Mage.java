@@ -9,15 +9,13 @@ import java.util.List;
 
 public class Mage extends Player {
 
-    private int spellPower;
-    private int range;
     private int manaPool;
     private int currentMana;
     private int manaCost;
     private int hitsCount;
 
-    public Mage (Position position, String name, Health mageHealth, int attackPoints, int defencePoints, List<Unit> allUnitsInRange, int spellPower, int range, int manaPool, int manaCost, int hitsCount, int abilityRange){
-        super(position, name, mageHealth, attackPoints, defencePoints, allUnitsInRange);
+    public Mage (Position position, String name, Health mageHealth, int attackPoints, int defencePoints, int spellPower, int manaPool, int manaCost, int hitsCount, int abilityRange){
+        super(position, name, mageHealth, attackPoints, defencePoints);
 
         this.abilityName = "Blizzard";
         this.abilityDamage = spellPower;
@@ -42,7 +40,7 @@ public class Mage extends Player {
         playerLevelUp();
         this.manaPool += 25 * playerLevel;
         this.increaseMana(manaPool / 4);
-        this.spellPower += 10 * playerLevel;
+        this.abilityDamage += 10 * playerLevel;
 
     }
 
@@ -61,7 +59,7 @@ public class Mage extends Player {
             this.currentMana -= manaCost;
             int hits = 0;
 
-            while (hits < hitsCount && allUnitsInRange.size() > 0){
+            while (hits < hitsCount && 10> 0){
                 // todo add combat method and live unit detection method
 
                 hits += 1;

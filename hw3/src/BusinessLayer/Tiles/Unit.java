@@ -15,16 +15,16 @@ public abstract class Unit extends Tile implements UnitVisitor, UnitVisited {
     protected int attackPoints;
     protected int defensePoints;
     protected Health health;
-    protected List<Unit> allUnitsInRange;
 
-    public Unit(char tileType, Position position, String name, Health unitHealth, int attackPoints, int defensePoints, List<Unit> allUnitsInRange) {
+
+    public Unit(char tileType, Position position, String name, Health unitHealth, int attackPoints, int defensePoints) {
         super(tileType, position);
 
         this.name = name;
         this.attackPoints = attackPoints;
         this.defensePoints = defensePoints;
         this.health = unitHealth;
-        this.allUnitsInRange = allUnitsInRange;
+
 
     }
 

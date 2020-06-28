@@ -6,8 +6,6 @@ import BusinessLayer.Tiles.Units.Enemies.Enemy;
 import BusinessLayer.Tiles.Units.UnitVisited;
 import BusinessLayer.Tiles.Units.UnitVisitor;
 
-import java.util.List;
-
 // players in the game are defined as unit tiles
 public abstract class Player extends Unit implements UnitVisitor, UnitVisited {
 
@@ -25,8 +23,8 @@ public abstract class Player extends Unit implements UnitVisitor, UnitVisited {
     protected int abilityDamage;
     protected int abilityRange;
 
-    public Player( Position position, String name, Health playerHealth, int attackPoints,int defencePoints, List<Unit> allUnitsInRange) {
-        super('@', position, name, playerHealth, attackPoints, defencePoints, allUnitsInRange);
+    public Player(Position position, String name, Health playerHealth, int attackPoints, int defencePoints) {
+        super('@', position, name, playerHealth, attackPoints, defencePoints);
 
         this.experience = startExperience;
         this.playerLevel = startPlayerLevel;
