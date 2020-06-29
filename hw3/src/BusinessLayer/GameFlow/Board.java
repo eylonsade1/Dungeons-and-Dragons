@@ -8,18 +8,40 @@ import BusinessLayer.Tiles.Units.Players.*;
 
 import java.util.List;
 
-public class Board implements Observer {
 
-//    private Observable observable;
+public class Board {
+
     private Tile[][] Board;
     private Player player = null;
     private int playerChoice;
     private List<Tile> allEnemies;
 
-    public Board(List<String> lines) {
+    public Board(){};
+
+    public void createPlayer(int playerChoice, Position playerPosition) {
+
+        switch (playerChoice) {
+            case 1:
+                this.player = new Warrior(playerPosition, "Jon Snow", new Health(300), 30, 4, 3);
+            case 2:
+                this.player = new Warrior(playerPosition, "The Hound", new Health(400), 20, 6, 5);
+            case 3:
+                this.player = new Mage(playerPosition, "Melisandre", new Health(100), 5, 1, 15, 300, 30, 5,6);
+            case 4:
+                this.player = new Mage(playerPosition, "Thoros of Myr", new Health(250), 25, 4, 20, 150, 20, 3, 4);
+            case 5:
+                this.player = new Rogue(playerPosition, "Arya Stark", new Health(150), 40, 2, 20);
+            case 6:
+                this.player = new Rogue(playerPosition, "Bronn", new Health(250), 35, 3, 50);
+            case 7:
+                this.player = new Hunter(playerPosition, "Ygritte", new Health(220), 30, 2, 6);
+        }
+
+    }
+
+    public void setLevel(List<String> lines){
 
         Board = new Tile[lines.size()][lines.get(0).length()]; // The Board
-
         for (int x = 0 ; x < lines.size(); x++) {
             for (int y = 0; y < lines.get(0).length(); y++) {
                 char tileType = lines.get(x).charAt(y);
@@ -104,30 +126,7 @@ public class Board implements Observer {
                 }
             }
         }
-
     }
-
-    public void createPlayer(int playerChoice, Position playerPosition) {
-
-        switch (playerChoice) {
-            case 1:
-                this.player = new Warrior(playerPosition, "Jon Snow", new Health(300), 30, 4, 3);
-            case 2:
-                this.player = new Warrior(playerPosition, "The Hound", new Health(400), 20, 6, 5);
-            case 3:
-                this.player = new Mage(playerPosition, "Melisandre", new Health(100), 5, 1, 15, 300, 30, 5,6);
-            case 4:
-                this.player = new Mage(playerPosition, "Thoros of Myr", new Health(250), 25, 4, 20, 150, 20, 3, 4);
-            case 5:
-                this.player = new Rogue(playerPosition, "Arya Stark", new Health(150), 40, 2, 20);
-            case 6:
-                this.player = new Rogue(playerPosition, "Bronn", new Health(250), 35, 3, 50);
-            case 7:
-                this.player = new Hunter(playerPosition, "Ygritte", new Health(220), 30, 2, 6);
-        }
-
-    }
-
     @Override
     public String toString() {
         String board="";
@@ -140,20 +139,17 @@ public class Board implements Observer {
         return board;
     }
 
+
     @Override
     public void update(String choice) {
 
     }
 
     @Override
-    public void update(List<String> lines) {
+    public void update(List<List<String>> lines) {
         new Board(lines);
     }
 
-    @Override
-    public void update(int choice) {
-        if (player == null) {
-            createPlayer(playerChoice, new Position(0, 0));
-        }
-    }
+
+
 }

@@ -56,8 +56,9 @@ public abstract class Player extends Unit implements UnitVisitor, UnitVisited {
     }
 
     // once a player dies it is represented by 'X' on the game board and the game ends
-    public void died() {
+    public boolean died() {
         this.tileType = 'X';
+        return true;
         // todo: print screen after death with player info and 'Game Over'
     }
     public String acceptToKill(UnitVisitor visitor){

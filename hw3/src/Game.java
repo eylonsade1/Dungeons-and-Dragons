@@ -1,4 +1,6 @@
+import BusinessLayer.GameFlow.Board;
 import BusinessLayer.GameFlow.Observer;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.*;
 import java.io.FileReader;
@@ -46,10 +48,12 @@ public class Game implements Observable {
     }
 
     @Override
-    public void notifyObserver(List<String> level) {
+    public void notifyObserver(List<List<String>> level) {
         for (Observer o : observers)
             o.update(level);
     }
+
+
 
     public void choosePlayer() {
 
@@ -81,7 +85,7 @@ public class Game implements Observable {
         Game game = new Game();
         game.choosePlayer();
         File[] files = new File(args[0]).listFiles(); // read from levels path
-
+        List<List<String>> levels = new ArrayList<List<String>>();
         for (File file : files) {
             if (file.isFile() && file.getName().indexOf("level")!=-1) { //read each file
 
@@ -98,14 +102,14 @@ public class Game implements Observable {
                     System.out.println(e.getMessage() + "\n" +
                             e.getStackTrace());
                 }
+                levels.add(lines);
 
-                game.notifyObserver(lines);
 
                 // todo : add to print os screen board
 
             }
         }
-
+        game.notifyObserver(levels);
 
     }
 

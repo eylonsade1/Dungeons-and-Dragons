@@ -7,7 +7,7 @@ public interface Observable {
     void removeObserver(Observer o);
     void notifyObserver(int num);
     void notifyObserver(String str);
-    void notifyObserver(List<String> level);
+    void notifyObserver(List<List<String>> levels);
 
 
 }
