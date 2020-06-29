@@ -1,6 +1,7 @@
 package BusinessLayer.Tiles.Units.Players;
 import BusinessLayer.Resources.Health;
 import BusinessLayer.Tiles.Position;
+import BusinessLayer.Tiles.Tile;
 import BusinessLayer.Tiles.Unit;
 import BusinessLayer.Tiles.Units.Enemies.Enemy;
 import BusinessLayer.Tiles.Units.UnitVisited;
@@ -25,11 +26,24 @@ public abstract class Player extends Unit implements UnitVisitor, UnitVisited {
     protected int abilityDamage;
     protected int abilityRange;
 
-    public Player( Position position, String name, Health playerHealth, int attackPoints,int defencePoints, List<Unit> allUnitsInRange) {
-        super('@', position, name, playerHealth, attackPoints, defencePoints, allUnitsInRange);
+    protected List<Enemy> allEnemies; // A list of all of the Enemies
+
+    public Player(Position position, String name, Health playerHealth, int attackPoints, int defencePoints) {
+        super('@', position, name, playerHealth, attackPoints, defencePoints);
 
         this.experience = startExperience;
         this.playerLevel = startPlayerLevel;
+    }
+
+
+    public int getPlayerLevel() {
+        return playerLevel;
+    }
+    public List<Enemy> getAllEnemies() {
+        return allEnemies;
+    }
+    public void setAllEnemies(List<Enemy> allEnemies) {
+        this.allEnemies = allEnemies;
     }
 
     // todo : add comment
