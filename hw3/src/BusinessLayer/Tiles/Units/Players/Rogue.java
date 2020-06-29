@@ -2,9 +2,6 @@ package BusinessLayer.Tiles.Units.Players;
 
 import BusinessLayer.Resources.Health;
 import BusinessLayer.Tiles.Position;
-import BusinessLayer.Tiles.Unit;
-
-import java.util.List;
 
 //todo comment
 
@@ -15,8 +12,8 @@ public class Rogue extends Player {
     private int energyCost;
     private int currentEnergy;
 
-    public Rogue (Position position, String name, Health rogueHealth, int attackPoints, int defencePoints, List<Unit> allUnitsInRange, int cost) {
-        super(position, name, rogueHealth, attackPoints, defencePoints, allUnitsInRange);
+    public Rogue(Position position, String name, Health rogueHealth, int attackPoints, int defencePoints, int cost) {
+        super(position, name, rogueHealth, attackPoints, defencePoints);
 
         this.energyCost = cost;
         this.currentEnergy = maxEnergy;

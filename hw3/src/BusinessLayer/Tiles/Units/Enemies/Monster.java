@@ -11,8 +11,8 @@ public class Monster extends Enemy {
 
     private int visionRange;
 
-    public Monster (char tileType, Position position, String name, Health monsterHealth, int attackPoints, int defensePoints, int experienceValue, List<Unit> allUnitsInRange, int visionRange) {
-        super(tileType, position, name, monsterHealth, attackPoints, defensePoints, experienceValue, allUnitsInRange);
+    public Monster (char tileType, Position position, String name, Health monsterHealth, int attackPoints, int defensePoints, int experienceValue, int visionRange) {
+        super(tileType, position, name, monsterHealth, attackPoints, defensePoints, experienceValue);
 
         this.visionRange = visionRange;
     }

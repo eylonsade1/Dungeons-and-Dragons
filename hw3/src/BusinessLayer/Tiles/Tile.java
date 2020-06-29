@@ -34,6 +34,10 @@ public abstract class Tile {
         this.position = position;
     }
 
+    public void setPosition(int x, int y) {
+        this.position.setPosition(x, y);
+    }
+
     // returns the range between 2 points on the game board
     // which is defined by their Euclidean Distance
     public int Range (Position p, Position q) {
