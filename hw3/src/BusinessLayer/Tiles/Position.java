@@ -21,19 +21,19 @@ public class Position {
     }
 
     // movement on the board
-    public void moveLeft() {
+    public void moveUp() {
         this.xPosition -= 1;
     }
 
-    public void moveRight() {
+    public void moveDown() {
         this.xPosition += 1;
     }
 
-    public void moveDown() {
+    public void moveRight() {
         this.yPosition += 1;
     }
 
-    public void moveUp() {
+    public void moveLeft() {
         this.yPosition -= 1;
     }
 
@@ -42,11 +42,5 @@ public class Position {
         this.yPosition = y;
 
     }
-//    public void setxPosition(int x) {
-//        this.xPosition = x;
-//    }
 
-//    public void setyPosition(int y) {
-//        this.yPosition = y;
-//    }
 }

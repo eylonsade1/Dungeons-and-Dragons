@@ -1,7 +1,10 @@
 package BusinessLayer.Tiles.Units.Players;
 
-import BusinessLayer.Resources.Health;
+import BusinessLayer.Tiles.Units.Health;
 import BusinessLayer.Tiles.Position;
+import BusinessLayer.Tiles.Units.Enemies.Enemy;
+
+import java.util.Random;
 
 //todo comment
 
@@ -40,22 +43,36 @@ public class Rogue extends Player {
         increaseCurrentEnergy(10);
     }
 
-    @Override
-    public String castAbility() {
-        if (currentEnergy < energyCost) {
-            return "Can not cast " + abilityName + ", " + (energyCost - currentEnergy) + " more energy needed";
+
+        @Override
+        public String castAbility() {
+            if (this.currentEnergy < this.energyCost) {
+                return "Can not cast " + this.abilityName + ", " + (this.energyCost - this.currentEnergy) + " more energy needed";
+            }
+            else {
+                String string = this.getName()+" cast "+ this.abilityName+".\n";
+                this.currentEnergy -= this.energyCost;
+                Random rand = new Random();
+                for (Enemy defender : this.getAllEnemies()) { //check for enemies in range <2
+                    if (this.Range(this.getPosition(),defender.getPosition()) < 2) {
+                        int defenseRoll = rand.nextInt(defender.getDefensePoints()+ 1); //defender roll dice
+                    int healthDamage = this.attackPoints - defenseRoll;
+                    defender.health.decreaseHealthAmount(healthDamage); //defender got hit
+                    if (defender.health.getHealthAmount() == 0) //if the defender died
+                        this.kill(defender);
+                    string += defender.getName()+ " rolled " + defenseRoll+"  defense points.\n"+
+                            this.getName() + " hit " +defender.getName()+ " for " + this.attackPoints + "ability damage.\n";
+                }}
+
+                return string;
+            }
         }
-        else {
-            this.currentEnergy -= energyCost;
-            // todo add combat method
-        }
-        return null;
-    }
+
 
     @Override
     public String describe() {
-        return name + "\t Health: " + health + "\t Attack: " + attackPoints + "\t Defense: " + defensePoints + "\t Level:" + playerLevel +  "\t Experience Value: "
-                + experience + "\\" + (50 * playerLevel) + "\t Energy: " + currentEnergy + "\\"+ maxEnergy +"\t Spell Power: " + abilityDamage;
+        return name + "\t Health: " + health.getHealthAmount() + "\\" + health.getHealthPool() + "\t Attack: " + attackPoints + "\t Defense: " + defensePoints + "\t Level:" + playerLevel +  "\t Experience Value: "
+                + experience + "\\" + (50 * playerLevel) + "\t Energy: " + currentEnergy + "\\"+ maxEnergy +"\t Spell Power: " + abilityDamage +"\n";
 
     }
 }

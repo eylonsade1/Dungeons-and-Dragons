@@ -1,14 +1,15 @@
 package BusinessLayer.Tiles.Units.Enemies;
 
-import BusinessLayer.Resources.Health;
+import BusinessLayer.Tiles.Units.Health;
 import BusinessLayer.Tiles.Position;
 import BusinessLayer.Tiles.Unit;
 import BusinessLayer.Tiles.Units.Players.Player;
-import BusinessLayer.Tiles.Units.UnitVisited;
+import BusinessLayer.Tiles.TileVisitor;
 import BusinessLayer.Tiles.Units.UnitVisitor;
+
 //todo comment
 
-public abstract class Enemy extends Unit implements UnitVisitor, UnitVisited {
+public abstract class Enemy extends Unit {
 
     protected int experienceValue;
 
@@ -24,7 +25,7 @@ public abstract class Enemy extends Unit implements UnitVisitor, UnitVisited {
     }
 
     @Override
-    public String visitAfterKilling(Player playerKilled) {
+    public String kill(Player playerKilled) {
         String killSummary = playerKilled.getName() + "was killed by " + this.name + ".\n"
                 + "You lost.\n";
 
@@ -33,13 +34,20 @@ public abstract class Enemy extends Unit implements UnitVisitor, UnitVisited {
     }
 
     @Override
-    public String visitAfterKilling(Enemy enemy) {
-        return null;
+    public String acceptContact(TileVisitor tileVisitor) {
+        return tileVisitor.contactWith(this);
     }
 
-    public String acceptToKill(UnitVisitor visitor){
-        return visitor.visitAfterKilling(this);
+    @Override
+    public String acceptKill(UnitVisitor visitor) {
+        return visitor.kill(this);
     }
 
+    @Override
+    public String kill(Enemy enemy) {
+        return "";
+    }
+
+    public abstract boolean gameTick(Position playerPosition);
 
 }

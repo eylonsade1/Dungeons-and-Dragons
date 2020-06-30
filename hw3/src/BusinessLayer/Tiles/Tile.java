@@ -1,6 +1,6 @@
 package BusinessLayer.Tiles;
 
-public abstract class Tile {
+public abstract class Tile implements TileVisited, TileVisitor {
 
     // represents each tile on the game board,
     // each tile has a position representing its coordinates on the board and a char that represents its type:
@@ -42,9 +42,11 @@ public abstract class Tile {
     // which is defined by their Euclidean Distance
     public int Range (Position p, Position q) {
 
-        return (int) Math.sqrt((p.getxPosition() - q.getxPosition())^2 + (p.getyPosition() - q.getyPosition())^2);
+        return (int) Math.sqrt(((p.getxPosition() - q.getxPosition())^2) + ((p.getyPosition() - q.getyPosition())^2));
 
     }
+
+    public String contactWith(Tile tile){return tile.acceptContact(this);}
 
     @Override
     public String toString() {

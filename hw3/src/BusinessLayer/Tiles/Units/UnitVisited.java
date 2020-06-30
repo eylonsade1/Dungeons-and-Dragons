@@ -1,7 +1,9 @@
 package BusinessLayer.Tiles.Units;
 
+import BusinessLayer.Tiles.TileVisitor;
+
 public interface UnitVisited {
 
-    public String acceptToKill (UnitVisitor visitor);
+    String acceptKill(UnitVisitor unitVisitor);
 
 }
