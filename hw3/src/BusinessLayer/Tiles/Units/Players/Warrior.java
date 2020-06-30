@@ -50,7 +50,7 @@ public class Warrior extends Player {
 
     @Override
     public String describe() {
-        return name + "\t Health: " + health + "\t Attack: " + attackPoints + "\t Defense: " + defensePoints + "\t Level:" + playerLevel
-                + "\t Experience Value: " + experience + "\\" + (50*playerLevel) + "\t Cooldown: " + remainingCoolDown + "\\" + abilityCoolDown;
+        return name + "\t Health: " + health.getHealthAmount() + "\\" + health.getHealthPool() + "\t Attack: " + attackPoints + "\t Defense: " + defensePoints + "\t Level:" + playerLevel
+                + "\t Experience Value: " + experience + "\\" + (50*playerLevel) + "\t Cooldown: " + remainingCoolDown + "\\" + abilityCoolDown + "\n";
     }
 }

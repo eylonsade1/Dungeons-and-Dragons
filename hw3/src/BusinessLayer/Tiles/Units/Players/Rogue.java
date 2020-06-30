@@ -55,7 +55,7 @@ public class Rogue extends Player {
     @Override
     public String describe() {
         return name + "\t Health: " + health + "\t Attack: " + attackPoints + "\t Defense: " + defensePoints + "\t Level:" + playerLevel +  "\t Experience Value: "
-                + experience + "\\" + (50 * playerLevel) + "\t Energy: " + currentEnergy + "\\"+ maxEnergy +"\t Spell Power: " + abilityDamage;
+                + experience + "\\" + (50 * playerLevel) + "\t Energy: " + currentEnergy + "\\"+ maxEnergy +"\t Spell Power: " + abilityDamage +"\n";
 
     }
 }

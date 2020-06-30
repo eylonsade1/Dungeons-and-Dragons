@@ -1,5 +1,5 @@
 package UI;
 
 public interface MessageHandler {
-    void message(String print);
+    void send(String print);
     }

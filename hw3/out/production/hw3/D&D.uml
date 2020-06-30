@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>BusinessLayer</OriginalElement>
+  <nodes>
+    <node x="0.0" y="271.0">BusinessLayer.Tiles.Tile</node>
+    <node x="0.0" y="0.0">BusinessLayer.Resources.Health</node>
+    <node x="262.0" y="0.0">BusinessLayer.Tiles.Position</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="-321.6788861501784" y="247.45154898264943" />
+  <SelectedNodes>
+    <node>BusinessLayer.Tiles.Tile</node>
+    <node>BusinessLayer.Resources.Health</node>
+    <node>BusinessLayer.Tiles.Position</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,5 +1,8 @@
 package BusinessLayer.Tiles;
 
+import BusinessLayer.Tiles.Units.Enemies.Enemy;
+import BusinessLayer.Tiles.Units.Players.Player;
+
 public abstract class Tile {
 
     // represents each tile on the game board,
@@ -45,6 +48,13 @@ public abstract class Tile {
         return (int) Math.sqrt((p.getxPosition() - q.getxPosition())^2 + (p.getyPosition() - q.getyPosition())^2);
 
     }
+
+
+
+    public String contactWith(Tile tile) {
+        return this.contactWith(tile);
+    }
+
 
     @Override
     public String toString() {

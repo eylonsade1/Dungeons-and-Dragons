@@ -47,7 +47,6 @@ public class Mage extends Player {
     @Override
     public void gameTick() {
         increaseMana(playerLevel);
-
     }
 
     @Override
@@ -71,7 +70,7 @@ public class Mage extends Player {
     @Override
     public String describe() {
         return name + "\t Health: " + health + "\t Attack: " + attackPoints + "\t Defense: " + defensePoints  + "\t Level:" + playerLevel + "\t Experience Value: "
-                + experience + "\\" + (50 * playerLevel) + "\t Mana: " + currentMana + "\\" + manaPool + "\t Spell Power: " + abilityDamage;
+                + experience + "\\" + (50 * playerLevel) + "\t Mana: " + currentMana + "\\" + manaPool + "\t Spell Power: " + abilityDamage + "\n";
 
     }
 }
