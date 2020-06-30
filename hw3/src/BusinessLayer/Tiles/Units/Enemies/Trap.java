@@ -2,6 +2,8 @@ package BusinessLayer.Tiles.Units.Enemies;
 
 import BusinessLayer.Resources.Health;
 import BusinessLayer.Tiles.Position;
+import BusinessLayer.Tiles.Tile;
+import BusinessLayer.Tiles.Unit;
 //todo comment
 
 public class Trap extends Enemy {
@@ -23,7 +25,9 @@ public class Trap extends Enemy {
 
     }
 
-    public void gameTick() {
+    @Override
+    public boolean gameTick(Position playerPosition) {
+        boolean playerInRange = false;
         this.ticksCount += 1;
         if (visible && ticksCount == visibilityTime) {
             this.ticksCount = 0;
@@ -33,10 +37,15 @@ public class Trap extends Enemy {
             this.ticksCount = 0;
             this.visible = true;
         }
+        if(Range(this.position, playerPosition) < 2) {
+            playerInRange = true;
+        }
+        return playerInRange;
     }
 
     @Override
     public String describe() {
-        return name + "\t Health: " + health + "\t Attack: " + attackPoints + "\t Defense: " + defensePoints + "\t Experience Value: " + experienceValue;
+        return name + "\t Health: " + health + "\t Attack: " + attackPoints + "\t Defense: " + defensePoints + "\t Experience Value: " + experienceValue + "\n";
     }
+
 }

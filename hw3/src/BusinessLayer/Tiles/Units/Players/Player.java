@@ -1,13 +1,15 @@
 package BusinessLayer.Tiles.Units.Players;
 import BusinessLayer.Resources.Health;
 import BusinessLayer.Tiles.Position;
+import BusinessLayer.Tiles.Tile;
 import BusinessLayer.Tiles.Unit;
 import BusinessLayer.Tiles.Units.Enemies.Enemy;
-import BusinessLayer.Tiles.Units.UnitVisited;
-import BusinessLayer.Tiles.Units.UnitVisitor;
+
+import java.util.List;
+
 
 // players in the game are defined as unit tiles
-public abstract class Player extends Unit implements UnitVisitor, UnitVisited {
+public abstract class Player extends Unit  {
 
     // each player will start the game at the first player level and zero experience point
     private final static int startExperience = 0;
@@ -22,6 +24,7 @@ public abstract class Player extends Unit implements UnitVisitor, UnitVisited {
     protected String abilityName;
     protected int abilityDamage;
     protected int abilityRange;
+    protected List<Enemy> allEnemies; // A list of all of the Enemies
 
     public Player(Position position, String name, Health playerHealth, int attackPoints, int defencePoints) {
         super('@', position, name, playerHealth, attackPoints, defencePoints);
@@ -39,8 +42,15 @@ public abstract class Player extends Unit implements UnitVisitor, UnitVisited {
         this.defensePoints += playerLevel;
     }
 
+    public List<Enemy> getAllEnemies() {
+        return allEnemies;
+    }
+    public void setAllEnemies(List<Enemy> allEnemies) {
+        this.allEnemies = allEnemies;
+    }
+
     @Override
-    public String visitAfterKilling(Enemy enemyKilled) {
+    public String kill(Enemy enemyKilled) {
         int experienceGained = enemyKilled.getExperienceValue();
         String killSummary = enemyKilled.getName() + "died. " + this.name + " gained " + experienceGained + "experience.\n";
         this.experience += experienceGained;
@@ -50,19 +60,18 @@ public abstract class Player extends Unit implements UnitVisitor, UnitVisited {
         return killSummary;
     }
 
+    public Position getPlayerPosition(){return this.position;}
+
     @Override
-    public String visitAfterKilling(Player player) {
-        return null;
+    public String kill(Player player) {
+        return "";
     }
 
     // once a player dies it is represented by 'X' on the game board and the game ends
     public boolean died() {
         this.tileType = 'X';
         return true;
-        // todo: print screen after death with player info and 'Game Over'
-    }
-    public String acceptToKill(UnitVisitor visitor){
-        return visitor.visitAfterKilling(this);
+        // todo: print screen after death with player info and 'UI.Game Over'
     }
 
     // abstract functions: all players- todo finish comment

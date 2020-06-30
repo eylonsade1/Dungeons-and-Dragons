@@ -2,50 +2,62 @@ package BusinessLayer.GameFlow;
 
 import BusinessLayer.Resources.Health;
 import BusinessLayer.Tiles.*;
+import BusinessLayer.Tiles.Units.Enemies.Enemy;
 import BusinessLayer.Tiles.Units.Enemies.Monster;
 import BusinessLayer.Tiles.Units.Enemies.Trap;
 import BusinessLayer.Tiles.Units.Players.*;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class Board {
 
     private Tile[][] Board;
-    private Player player = null;
-    private int playerChoice;
+    protected Player player;
     private List<Tile> allEnemies;
 
-    public Board(){};
+    public Board(){
 
-    public void createPlayer(int playerChoice, Position playerPosition) {
+    }
+
+    public String createPlayer(int playerChoice, Position playerPosition) {
 
         switch (playerChoice) {
             case 1:
                 this.player = new Warrior(playerPosition, "Jon Snow", new Health(300), 30, 4, 3);
+                break;
             case 2:
                 this.player = new Warrior(playerPosition, "The Hound", new Health(400), 20, 6, 5);
+                break;
             case 3:
                 this.player = new Mage(playerPosition, "Melisandre", new Health(100), 5, 1, 15, 300, 30, 5,6);
+                break;
             case 4:
                 this.player = new Mage(playerPosition, "Thoros of Myr", new Health(250), 25, 4, 20, 150, 20, 3, 4);
+                break;
             case 5:
                 this.player = new Rogue(playerPosition, "Arya Stark", new Health(150), 40, 2, 20);
+                break;
             case 6:
                 this.player = new Rogue(playerPosition, "Bronn", new Health(250), 35, 3, 50);
+                break;
             case 7:
                 this.player = new Hunter(playerPosition, "Ygritte", new Health(220), 30, 2, 6);
+                break;
         }
-
+        return "You have selected:\n" + player.getName() +"\n";
     }
 
     public void setLevel(List<String> lines){
-
+        Tile newTile = null;
+        allEnemies = new ArrayList<Tile>();
         Board = new Tile[lines.size()][lines.get(0).length()]; // The Board
         for (int x = 0 ; x < lines.size(); x++) {
             for (int y = 0; y < lines.get(0).length(); y++) {
                 char tileType = lines.get(x).charAt(y);
-                Tile newTile;
+
                 switch (tileType) {
                     case '.':
                         newTile = new Empty(new Position(x, y));
@@ -56,7 +68,8 @@ public class Board {
                         break;
 
                     case '@':
-                        player.setPosition(x, y);
+                        this.player.setPosition(x, y);
+                        newTile = player;
                         break;
 
                     case 's':
@@ -124,8 +137,10 @@ public class Board {
                         allEnemies.add(newTile);
                         break;
                 }
+                Board[x][y] = newTile;
             }
         }
+
     }
     @Override
     public String toString() {
@@ -134,22 +149,17 @@ public class Board {
             for (int j = 0; j < Board[0].length; j++) {
                 board+=Board[i][j].toString();
             }
-            board+="\n";
+            board += "\n";
         }
-        return board;
+        return board + "\n" + player.describe();
+    }
+public Position getPlayersP(){return player.getPosition();}
+    public Player getPlayer() {
+        return player;
     }
 
-
-    @Override
-    public void update(String choice) {
-
+    public Tile getTile(Position position){
+        return this.Board[position.getxPosition()][position.getyPosition()];
     }
-
-    @Override
-    public void update(List<List<String>> lines) {
-        new Board(lines);
-    }
-
-
 
 }

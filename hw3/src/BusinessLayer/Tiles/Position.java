@@ -42,11 +42,5 @@ public class Position {
         this.yPosition = y;
 
     }
-//    public void setxPosition(int x) {
-//        this.xPosition = x;
-//    }
 
-//    public void setyPosition(int y) {
-//        this.yPosition = y;
-//    }
 }
